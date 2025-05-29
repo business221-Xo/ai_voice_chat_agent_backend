@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 // Initialize OpenAI client with your API key
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY ,
+  apiKey: process.env.OPENAI_API_KEY,
 });
 
 // In-memory storage for custom knowledge content
