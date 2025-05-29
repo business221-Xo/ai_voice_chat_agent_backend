@@ -18,8 +18,8 @@ const openai = new OpenAI({
 });
 
 // In-memory storage for custom knowledge content
-let customKnowledge = "The name of AI assistant is Ronald. You have to inform your name only when the uesr asks about your name. In other cases, you don't have to tell your name in every time.";
-
+// let customKnowledge = "The name of AI assistant is Ronald. You have to inform your name only when the uesr asks about your name. In other cases, you don't have to tell your name in every time.";
+let customKnowledge = "You are an AI-powered sales and customer service agent integrated into our business community. You must not repeat same answers while answering. Your primary tasks include:1. Handling customer inquiries about service or parts orders with a friendly and professional tone. 2. Gathering and verifying customer information efficiently.3. Screening calls to filter out spam and irrelevant requests.4. Escalating complex or sensitive issues to a human operator."
 // Endpoint to update custom knowledge content
 app.post("/api/knowledge", (req, res) => {
   const { content } = req.body;
