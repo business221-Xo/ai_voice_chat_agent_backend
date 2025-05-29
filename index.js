@@ -40,8 +40,8 @@ app.post("/api/chat", async (req, res) => {
   try {
     // Prepare system prompt with custom knowledge if available
     const systemPrompt = customKnowledge
-      ? `You are Pack 3000 assistant. Use the following knowledge to answer user queries:\n${customKnowledge}`
-      : "You are Pack 3000 assistant.";
+      ? `You are an assistant. Use the following knowledge to answer user queries:\n${customKnowledge}`
+      : "You are an assistant.";
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo", // or "gpt-3.5-turbo"
