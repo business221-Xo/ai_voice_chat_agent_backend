@@ -5,7 +5,8 @@ import bodyParser from "body-parser";
 import OpenAI from "openai";
 
 const app = express();
-const port = 4000;
+// const port = 4000;
+const port = process.env.PORT
 
 // Middleware
 app.use(cors());
