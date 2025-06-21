@@ -4,6 +4,9 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import OpenAI from "openai";
 
+import fs from "fs";
+import path from "path";
+
 const app = express();
 // const port = 4000;
 const port = process.env.PORT
@@ -28,6 +31,33 @@ app.post("/api/knowledge", (req, res) => {
   }
   customKnowledge = content.trim();
   res.json({ message: "Custom knowledge updated successfully." });
+});
+
+// connect_withMarket
+app.post("/api/receive-market", (req, res) => {
+  const { connect_withMarket } = req.body;
+  
+  if (typeof connect_withMarket !== "string" || !connect_withMarket.trim()) {
+    return res.status(400).json({ error: "connect_withMarket must be a non-empty string." });
+  }
+
+  try {
+    // Create log file path
+    const logPath = path.join(process.cwd(), 'log.txt');
+    const timestamp = new Date().toISOString();
+    const logEntry = `${timestamp} - Received connect_withMarket: ${connect_withMarket}\n`;
+    
+    // Append to log file
+    fs.appendFileSync(logPath, logEntry, 'utf8');
+    
+    return res.json({ 
+      success: true,
+      message: "Market connection received and logged."
+    });
+  } catch (error) {
+    console.error("Error logging market connection:", error);
+    return res.status(500).json({ error: "Failed to log market connection." });
+  }
 });
 
 // Chat endpoint
